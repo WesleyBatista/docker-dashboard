@@ -1,0 +1,12 @@
+// My main Sass file.
+$mdc-theme-primary: #9c27b0;
+$mdc-theme-accent: #76ff03;
+$mdc-theme-background: #fff;
+
+.bla{
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
