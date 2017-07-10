@@ -1,0 +1,6 @@
+*.pem
+docker-compose.yaml
+node_modules
+public/
+dist/
+.vscode/
