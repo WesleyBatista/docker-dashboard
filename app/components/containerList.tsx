@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Container, ContainerListItem } from './containerListItem'
+import { ContainerListItem } from './containerListItem'
+import { Container } from "./interfaces"
 
 export class ContainerListProps {
     containers: Container[]

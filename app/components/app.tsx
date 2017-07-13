@@ -2,8 +2,11 @@ import * as React from 'react'
 import * as _ from 'lodash'
 import * as io from 'socket.io-client'
 import { ContainerList } from './containerList'
-import { Container, ContainerListItem } from './containerListItem'
+import { ContainerListItem } from './containerListItem'
+import { Container } from './interfaces'
 import { RunningContainerList } from './runningContainerList'
+import { NewContainerDialog } from './newContainerModal'
+import { DialogTrigger } from './dialogTrigger'
 
 let socket = io.connect()
 
@@ -30,6 +33,11 @@ export class AppComponent extends React.Component<{}, AppState> {
                 stoppedContainers: partitioned[1].map(this.mapContainer)
             })
         })
+
+        socket.on('image.error', (args: any) => {
+            alert(args.message.json.message)
+        })
+
     }
 
     mapContainer(container:any): Container {
@@ -43,6 +51,10 @@ export class AppComponent extends React.Component<{}, AppState> {
             status: `${container.State} (${container.Status})`,
             image: container.Image
         }
+    }
+
+    onRunImage(name: String) {
+        socket.emit('image.run', { name: name })
     }
 
     componentDidMount() {
@@ -59,6 +71,7 @@ export class AppComponent extends React.Component<{}, AppState> {
                     <div className="mdl-layout__tab-bar mdl-js-ripple-effect">
                     <a href="#scroll-tab-1" className="mdl-layout__tab is-active">Running</a>
                     <a href="#scroll-tab-2" className="mdl-layout__tab">Stopped</a>
+                    <a href="#scroll-tab-3" className="mdl-layout__tab">Create</a>
                     </div>
                 </header>
                 <main className="mdl-layout__content mdl-color--grey-100">
@@ -76,6 +89,16 @@ export class AppComponent extends React.Component<{}, AppState> {
                             <div className="mdl-layout">
                                 <div>
                                     <ContainerList title="Stopped containers" containers={this.state.stoppedContainers} />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section className="mdl-layout__tab-panel" id="scroll-tab-3">
+                        <div className="page-content">
+                            <div className="mdl-layout">
+                                <div>
+                                    <DialogTrigger id="newContainerModal" buttonText="New container" />
+                                    <NewContainerDialog id="newContainerModal" onRunImage={this.onRunImage.bind(this)} />
                                 </div>
                             </div>
                         </div>

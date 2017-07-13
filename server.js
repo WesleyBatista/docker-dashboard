@@ -48,6 +48,18 @@ io.on('connection', socket => {
         }
     })
 
+    socket.on('image.run', args => {
+        docker.createContainer({ Image: args.name }, (err, container) => {
+            if (!err)
+                container.start((err, data) => {
+                    if (err)
+                        socket.emit('image.error', { message: err })
+                })
+            else
+                socket.emit('image.error', { message: err })
+        })
+    })
+
 })
 
 setInterval(refreshContainers, 1000)

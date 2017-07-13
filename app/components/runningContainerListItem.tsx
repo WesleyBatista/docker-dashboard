@@ -1,16 +1,10 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
 import * as io from 'socket.io-client'
+import { Container } from './interfaces'
+
 
 const socket = io.connect()
-
-export interface Container {
-    id: string
-    name: string
-    image: string
-    state: string
-    status: string
-}
 
 export class RunningContainerListItem extends React.Component<Container, {}> {
 
