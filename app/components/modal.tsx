@@ -25,7 +25,7 @@ export default class Modal extends React.Component<ModalProperties, {}> {
             if (this.props.onButtonClicked() !== false) {
 
                 // Use Bootstrap's jQuery API to hide the popup
-                $(this.modalElementId).modal('hide')
+                // $(this.modalElementId).modal('hide')
             }
         }
     }
