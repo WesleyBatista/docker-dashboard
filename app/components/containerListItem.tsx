@@ -1,4 +1,3 @@
-/// <reference path="./interfaces.d.ts"/>
 import * as React from 'react'
 import * as classNames from 'classnames'
 import * as io from 'socket.io-client'
@@ -18,6 +17,11 @@ export class ContainerListItem extends React.Component<Container, {}> {
         socket.emit(evt, { id: this.props.id })
     }
 
+    onRemoveClick() {
+        const evt = 'container.remove'
+        socket.emit(evt, { id: this.props.id })
+    }
+
     render() {
         const panelClass = this.isRunning() ? 'success' : 'default'
         const classes = classNames('some', `some_${panelClass}`)
@@ -28,7 +32,7 @@ export class ContainerListItem extends React.Component<Container, {}> {
                 <td className="mdl-data-table__cell--non-numeric"><div className="bla" title={this.props.name}>{ this.props.name }</div></td>
                 <td className="mdl-data-table__cell--non-numeric">{this.props.image}</td>
                 <td className="mdl-data-table__cell--non-numeric">{this.props.status}</td>
-                <td className="mdl-data-table__cell--non-numeric"><a className="" href="#" onClick={this.onActionButtonClick.bind(this)}>{buttonText}</a></td>
+                <td className="mdl-data-table__cell--non-numeric"><a className="" href="#" onClick={this.onActionButtonClick.bind(this)}>{buttonText}</a> <a className="" href="#" onClick={this.onRemoveClick.bind(this)}>remove</a></td>
             </tr>
         )
     }
