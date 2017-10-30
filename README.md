@@ -4,6 +4,11 @@ An browser interface to interact with Docker on your machine.
 
 Heavily inspired by the great tutorial "[Create a Docker dashboard with TypeScript, React and Socket.io](https://auth0.com/blog/docker-dashboard-with-react-typescript-socketio/)", published by [Steve Hobbs](http://twitter.com/elkdanger).
 
+## Getting Started (dev)
+
+	1. Install the dependencies with: `npm i`;
+	2. Run `npm run dev` to get the application running.
+
 ## Screenshots
 
 ### Running containers
