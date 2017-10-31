@@ -39,6 +39,7 @@ export class NewContainerDialog extends React.Component<ModalProperties, ModalSt
 
         return (
             <Modal id="newContainerModal" buttonText="Run" title="Create a new container" onButtonClicked={this.runImage.bind(this)}>
+                <div className="label-info">*supporting only images first pulled from the CLI</div>
                 <form className="form-horizontal">
                     <div className={inputClass}>
                         <label htmlFor="imageName" className="col-sm-3 control-label">Image name</label>
