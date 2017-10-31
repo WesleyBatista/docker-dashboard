@@ -5,6 +5,7 @@ import * as http from "http"
 import * as SocketIO from 'socket.io'
 import * as path from "path"
 import * as  docker  from "../dockerapi"
+import * as  configs  from "../configs"
 import { ContainerInfo } from 'dockerode';
 import { Container } from "./components/interfaces"
 
@@ -83,8 +84,8 @@ export class Server {
 
     })
 
-    this._server.listen(3000, function(){
-      console.log('Example app listening on port 5000!')
+    this._server.listen(configs.port, function(){
+      console.log(`Example app listening on port ${configs.port}!`)
     });
   }
 
