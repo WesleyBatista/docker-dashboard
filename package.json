@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.5",
-    "dockerode": "^2.4.3",
+    "dockerode": "^2.5.3",
     "express": "^4.15.3",
     "kafka-node": "^1.6.2",
     "lodash": "^4.17.4",
