@@ -71,14 +71,12 @@ export class Server {
         })
 
         socket.on('image.run', args => {
-            docker.createContainer({ Image: args.name }, (err, container) => {
-                if (!err)
-                    container.start((err, data) => {
-                        if (err)
-                            socket.emit('image.error', { message: err })
-                    })
-                else
-                    socket.emit('image.error', { message: err })
+            docker.createContainer({Image: args.name}).then((container) => {
+              container.start()
+            }).catch((err) => {
+              if (err)
+                console.log(err)
+                socket.emit('image.error', { message: err })
             })
         })
 
